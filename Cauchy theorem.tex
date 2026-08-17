@@ -1,0 +1,286 @@
+\chapter{Cauchy's Theorem}
+
+\section{Gourset's Theorem}
+
+\noindent\textbf{Intuition:} Recall the Fundamental Thm of Calculus for Contour Integrals implies that: If $\gamma$ is a closed curve in an open set $\Omega \subseteq \mathbb{C}$ and $f$ is continuous and has a primitive in $\Omega$, then
+\[
+\int_\gamma f(z)dz= 0
+\]
+We naturally ask whether the requirements for $f$ can be simplified. We may do so by restricting $\gamma$.
+
+\begin{theorem}{Gourset's Theorem}\\
+Let $\Omega$ be an open subset of $\mathbb{C}$ and let $T \subseteq \Omega$ be a triangle with interior contained in $\Omega$. If $f$ is holomorphic in $\Omega$, then
+\[
+\int_T f(z)dz=0
+\]
+\end{theorem}
+
+\begin{proof}
+    We denote by $T^{(0)}$ the original triangle. Then we can get four smaller triangles by $T_1^{(1)},T_2^{(1)}, T_3^{(1)}, T_4^{(1)}$ by connecting the midpoints of the three sides of $T^{(0)}$. Then
+    \[
+    \int_Tf(z) dz= \int_{T^{(0)}} f(z)dz= \sum_{j=1}^4 \int_{T_j^{(1)}} f(z)dz
+    \]
+    Hence, $\exists j\in \{1,2,3,4\}$, s.t.: $|\int_T f(z)dz| \leq 4|\int_{T_j^{(1)}} f(z)dz|$. Denote $T^{(1)}:= T_j^{(1)}$ and define $\mathcal{T}^{(1)}$ to be the solid triangle with boundary $T^{(1)}$. Repeat this process, and then we can get a sequence of solid triangles $\mathcal{T}^{(0)} \supseteq \mathcal{T}^{(1)} \supseteq \cdots \supseteq \mathcal{T}^{(n)} \supseteq \cdots$, such that
+    \[
+    |\int_T f(z)dz| \leq 4^n|\int_{T^{(n)}} f(z)dz|
+    \]
+    Note that the diameters of $\{T^{(n)}\}_{n=0}^\infty$ converge to $0$. Hence, by the Nested Thm, $\{z_0 \} =\bigcap_{n=0}^\infty \mathcal{T}^{(n)}$ for some $z_0 \in \Omega$. Since $f$ is holomorphic at $z_0$, then we can expand $f$ at $z_0$ into a first-order approximation:
+    \[
+    f(z)= f(z_0)+ f'(z_0) (z-z_0)+ \psi(z) (z-z_0)
+    \]
+    where $\psi(z)$ denotes the higher-order infinitesimal, i.e.: $\psi(z) \to 0$ as $z\to z_0$. Since the constant function $f(z_0)$ and the linear function $f'(z_0) (z-z_0)$ have primitives, then by the Fundamental Thm of Calculus for Contour Integrals, we have:
+    \[
+    \int_{T^{(n)}} f(z)dz =\int_{T^{(n)}} \psi(z) (z-z_0)dz
+    \]
+    Let $p_n$ denote the perimeter of $T^{(n)}$ and $d_n$ denote the diameter of $T^{(n)}$. Then $p_n= 2^{-n} p_0$ and $d_n= 2^{-n}d_0$. Therefore, 
+    \[
+    |\int_Tf(z)dz| \leq 4^n|\int_{T^{(n)}} f(z)dz| =4^n|\int_{T^{(n)}} \psi(z) (z-z_0)dz| < p_0d_0 \epsilon
+    \]
+\end{proof}
+
+\begin{corollary}{of Gourset's Theorem}\\
+Let $f$ be holomorphic in an open set $\Omega \subseteq \mathbb{C}$ that contains a rectangle $R$ and its interior. Then
+\[
+\int_R f(z)dz=0
+\]
+\end{corollary}
+
+\begin{proof}
+    After connecting one diagonal of $R$, we can get two triangles $T_1$ and $T_2$ with
+    \[
+    \int_Rf(z)dz= \int_{T_1+T_2} f(z)dz= \int _{T_1} f(z)dz+ \int_{T_2}f(z)dz\xlongequal{\text{Gourset's}}0
+    \]
+\end{proof}
+
+\section{Cauchy Theorem in Discs}
+
+\noindent\textbf{Motivation:} Gourset's Thm only gives conclusion on triangular path, but we need to calculate on some more general cases. We still need to go bact to the coro of the Fundamental Thm of Calculus for Contour Integrals.
+
+\begin{lemma}{Local Existence-of-Primitives Lemma}\\
+A holomorphic function in an open disc has a primitive in that disc.
+\end{lemma}
+
+\begin{proof}
+    Let $D$ be an open disc, WLOG, centered at the origin and let $f$ be holomorphic in $D$. Note that $\forall z\in D$, we have a path $\gamma_{0,z}$ consisting of two line segments, one horizontal and the other vertical. Define
+    \[
+    F(z):= \int_{\gamma_{0,z}} f(w)dw
+    \]
+    Then we claim that $F$ is holomorphic in $D$ and that $F'(z)=f(z)$. $\forall z\in D$, since $D$ is open, then $\exists r>0$, s.t.: $B_r(z) \subseteq D$. Hence, $\exists h\in \mathbb{C},$ s.t.: $z+h\in D$. Then we have:
+    \begin{equation*}
+        F(z+h)-F(z):= \int_{\gamma_{0,z+h}} f(w)dw- \int_{\gamma_{0,z}}f(w)dw \xlongequal{\text{Gourset's}} \int_{\eta} f(w)dw \tag{*}
+    \end{equation*}
+    where $\eta$ denotes the line segment from $z$ to $z+h$. By the continuity of $f$, we can write $f(w)=f(z)+ \psi(w)$ where $\psi$ denotes the error term, i.e.: $\psi(w) \to 0$ as $w\to z$. Therefore, 
+    \begin{align*}
+        F(z+h)- F(z) &\xlongequal{(*)} \int_{\eta} f(w)dw= f(z) \int_{\eta} dw+ \int_\eta \psi(w)dw= f(z) h+\int_\eta \psi(w)dw
+    \end{align*}
+    Since $|\int_\eta \psi(w)dw|\leq \sup_{w\in \eta} |\psi(w)| \cdot |h|$, then
+    \[
+    F'(z)= \lim_{h\to 0} \frac{F(z+h) -F(z)}{h}=f(z)
+    \]
+\end{proof}
+
+\noindent\textbf{Remark:} In fact, the proof of Local Existence-of-Primitives Lemma holds not only for discs, but for the region with a good shape which allows every point $z$ in it yielding $\gamma_{0,z}$. We call a \textit{toy contour} any closed curve where the notion of interior is obvious and a construction similar to that in the proof of Local Existence-of-Primitives Lemma is possible in a neighborhood of the curve and its interior. 
+
+Then we use an important example of toy contours to prove the Cauchy's Integral Formula later -- keyhole contours $\Gamma$, consisting of two almost complete circles, one larger and one smaller, connected by a narrow corridor.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, line width=0.8pt]
+    
+    \draw (50.55:3.5) 
+      arc [start angle=50.55, end angle=406.62, radius=3.5] 
+      -- ({0.7 + 0.45*cos(34.53)}, {0.7 + 0.45*sin(34.53)}) 
+      arc [start angle=34.53, end angle=-294.53, radius=0.45] 
+      -- cycle;
+
+    \node at (-2.2, 2.2) {\Large $\Gamma$};
+    \node at (-0.1, -0.4) {\Large $\Gamma_{\text{int}}$};
+  \end{tikzpicture}
+\end{figure}
+
+\begin{theorem}{Cauchy's Theorem in Disc}\\
+Let $f$ be a holomorphic function in a disc $D$. Then $\forall$ closed curve $\gamma$ in $D$, we have
+\[
+\int_\gamma f(z)dz=0
+\]
+\end{theorem}
+
+\begin{proof}
+    It's immediately from the Fundamental Thm of Calculus for Contour Integrals and the Local Existence-of-Primitives Lemma.
+\end{proof}
+
+\begin{corollary}{of Cauchy's Theorem in Discs}\\
+If $f$ is holomorphic in an open subset of $\mathbb{C}$ containing the circle $C$ and its interior. Then
+\[
+\int_C f(z)dz=0
+\]
+\end{corollary}
+
+\begin{proof}
+    Let $D$ be the open disc with boundary $C$. Then there is a slightly larger disc $D'$ containing $D$, such that $f$ is holomorphic in $D'$. We apply Cauchy's Thm in $D'$ and then we're done.
+\end{proof}
+
+\section{Cauchy's Integral Formula}
+
+\begin{theorem}{Cauchy's Integral Formula (CIF)}\\
+Let $f$ be holomorphic in an open set that contains the closure of an open disc $D$ and let $C$ denotes the boundary circle of $D$ with the positive orientation. Then $\forall z\in D$,
+\[
+f(z)= \frac{1}{2\pi i} \int_C \frac{f(\zeta)}{\zeta- z} d\zeta
+\]
+\end{theorem}
+
+\begin{proof}
+    Consider the keyhole contour $\Gamma_{\delta,\epsilon}$ with $\delta$ the width of the corridor, $\epsilon$ the radius of the smaller circle $C_\epsilon$ at $z$ and $C$ the larger circle. Cosider the function
+    \[
+    F(\zeta):= \frac{f(\zeta)}{\zeta-z}
+    \]
+    which is holomorphic away from the point $\zeta=z$. Hence, we have
+    \[
+    \int_{\Gamma_{\delta,\epsilon}} F(\zeta) d\zeta=0
+    \]
+    by Cauchy's Thm in keyholes. Note that for $\delta\to 0$, the integral directions on the two sides of corridor are opposite and hence cancel each other out, so we have
+    \[
+    \int_CF(\zeta)d\zeta+ \int_{C_\epsilon} F(\zeta) d\zeta=0
+    \]
+    as $\delta\to 0$. Consider $F(\zeta)= \frac{f(\zeta)- f(z)}{\zeta- z}+ \frac{f(z)}{\zeta -z}$. Since $f$ is holomorphic at $z$, then $\lim_{\zeta \to z} \frac{f(\zeta)- f(z)}{\zeta -z}=f'(z)$, so the first term of $F(\zeta)$ is bounded. As for the second term,
+    \[
+    \int_{C_\epsilon} \frac{f(z)}{\zeta-z} d\zeta= f(z) \int_1^{2\pi} \frac{1}{\epsilon e^{-it}} (-i\epsilon e^{-it}dt)= -2\pi if(z)
+    \]
+    Therefore, as $\delta \to 0, \epsilon\to 0$, we have:
+    \[
+    0=\int_CF(\zeta) d\zeta+\lim_{\epsilon\to 0} \int_{C_\epsilon} F(\zeta) d\zeta= \int_C \frac{f(\zeta)}{\zeta-z}d\zeta- 2\pi if(z)
+    \]
+\end{proof}
+
+\begin{corollary}{1 of CIF}\\
+If $f$ is holomorphic in an open set $\Omega \subseteq \mathbb{C}$, then $f$ has infinitely many compex derivatives in $\Omega$. Furthermore, if $C\subseteq \Omega$ is a circle whose interior is also contained in $\Omega$, then $\forall z\in \text{int }C$,
+\[
+f^{(n)} (z)= \frac{n!}{2\pi i} \int_C\frac{f(\zeta)}{(\zeta- z)^{n+1}} d\zeta
+\]
+\end{corollary}
+
+\begin{proof}
+    It holds immediately by induction with the basic case $n=0$ being CIF and an easy computation.
+\end{proof}
+
+\begin{corollary}{2 of CIF: Cauchy Inequalities}\\
+If $f$ is holomorphic in an open set that contains the closure of a disc $D$ centered at $z_0$, of radius $R$ and of boundary $C$, then
+\[
+|f^{(n)} (z_0)| \leq \frac{n! \cdot \sup_{z\in C} |f(z)|}{R^n}
+\]
+\end{corollary}
+
+\begin{proof}
+    \begin{align*}
+        |f^{(n)} (z_0)|& \xlongequal{\text{coro.1}} |\frac{n!}{2\pi i} \int_C\frac{f(\zeta)}{(\zeta- z_0 )^{n+1}} d\zeta|= \frac{n!}{2\pi} |\int_0^{2\pi} \frac{f(z_0+ Re^{i\theta})}{(Re^{i\theta})^{n+1}} Rie^{i\theta} d\theta| \leq \frac{n!}{2\pi} \cdot \frac{\sup_{z\in C}|f(z)|}{R^n} \cdot 2\pi
+    \end{align*}
+\end{proof}
+
+\begin{corollary}{3 of CIF: Power Series Expansion Theorem}\\
+Let $f$ be holomorphic in an open set $\Omega \subseteq \mathbb{C}$. If $D$ is a disc centered at $z_0$ and whose closure is contained in $\Omega$, then $f$ has a power series expansion at $z_0$
+\[
+f(z)= \sum_{n=0}^\infty a_n(z-z_0)^n
+\]
+$\forall z\in D$, and the coefficients are given by
+\[
+a_n=\frac{f^{(n)}(z_0)}{n!} ,\forall n\geq 0
+\]
+\end{corollary}
+
+\begin{proof}
+    $\forall z\in D$, by CIF, we have:
+    \[
+    f(z)= \frac{1}{2\pi i} \int_C \frac{f(\zeta)}{\zeta -z} d\zeta
+    \]
+    where $C$ denotes the boundary of $D$. If we write
+    \[
+    \frac{1}{\zeta -z}= \frac{1}{\zeta-z_0- (z-z_0)}= \frac{1}{\zeta-z_0} \cdot \frac{1}{1 -\frac{z-z_0}{\zeta-z_0}}= \frac{1}{\zeta-z_0} \sum_{n=0}^\infty (\frac{z-z_0}{\zeta-z_0})^n
+    \]
+    then we're done.
+\end{proof}
+
+\begin{corollary}{of coro.3 of CIF / Power Series Expansion Theorem}\\
+If $f$ is entire, then its power series converge everywhere in $\mathbb{C}$.
+\end{corollary}
+
+\begin{corollary}{4 of CIF: Liouville Theorem}\\
+If $f$ is entire and bounded, then $f$ is constant.
+\end{corollary}
+
+\begin{proof}
+    Let $|f(z)| \leq B, \forall z\in \mathbb{C}$. Then by the Cauchy Inequalities, we get: $\forall z\in \mathbb{C}, \forall R\in \mathbb{R}$,
+    \[
+    |f'(z)| \leq \frac{B}{R}
+    \]
+    Take $R\to \infty$ and then we're done.
+\end{proof}
+
+\begin{corollary}{5 of CIF: Fundamental Theorem of Algera}
+\begin{enumerate}
+    \item (Existence of roots). Every non-constant polynomial $P(z)= a_n z^n+\cdots +a_1z +a_0$ with complex coefficients has a root in $\mathbb{C}$.
+    \item (The number of roots and factorization). Every polynomial $P(z)= a_nz^n +\cdots+ a_1z+a_0$ of degree $n\geq 1$ has precisely $n$ roots in $\mathbb{C}$. If these roots are denoted by $w_1 ,\cdots, w_n$, then $P$ can be factored as
+    \[
+    P(z)= a_n(z-w_1) (z-w_2) \cdots (z-w_n)
+    \]
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Suppose on the contrary that $P$ has no roots. Assume $a_n \neq 0$.
+        
+        \noindent\textbf{Claim:} $1/P(z)$ is bounded.
+        \begin{proof}
+            \textit{of claim:} Whenever $z\neq 0$, we can write
+            \[
+            \frac{P(z)}{z^n}= a_n+(\frac{a_{z-1}}{z} +\cdots +\frac{a_0}{z^n})
+            \]
+            Since each term above in the parentheses goes to $0$ as $|z|\to \infty$, then $\exists R>0$, s.t.: whenever $|z|>R$,
+            \[
+            |P(z)|\geq \frac{|a_n|}{2} |z|^n
+            \]
+            Hence, for $|z|>R$, $|1/P(z)| \leq \frac{2}{|a_n|}\cdot \frac{1}{|z|^n} <\frac{2}{|a_n|} \cdot \frac{1}{R^n}$, so $1/P(z)$ is bounded when $|z|>R$. For $|z|\leq R$, since $P$ is continuous and has no roots in the disc $|z|\leq R$, then $P$ is bounded.
+        \end{proof}
+        Then by Liouville Thm, we have: $1/P(z)$ is a constant, contradiction.
+
+        \item By 1, $P$ has a root, say $w_1$. Write $z=(z-w_1) +w_1$ and then we get
+        \[
+        P(z)=b_n (z-w_1)^n+ \cdots+ b_1(z-w_1) +b_0
+        \]
+        for some $b_n ,\cdots, b_1,b_0$ with $b_n=a_n$. Since $P(w_1)=0$, then $b_0=0$. Hence,
+        \[
+        P(z)= (z-w_1)(b_n(z-w_1)^{n-1} +\cdots +b_1)= (z-w_1)Q(z)
+        \]
+        where $Q$ is a polynomial of degree $n-1$. Then by induction, we're done.
+    \end{enumerate}
+\end{proof}
+
+\section{Identity Theorem}
+
+\noindent\textbf{Intuition:} We've seen, in the Power Series Expansion Thm, that every holomorphic function can expanded into power series. Then we must think of a question: What are the characteristics of the zeros of it?
+
+\begin{theorem}{Identity Theorem}\\
+Let $f$ be a holomorphic function in an open connected region $\Omega$ vanishes on a sequence of distinct points with a limit point in $\Omega$. Then $f$ is identically $0$ in $\Omega$.
+\end{theorem}
+
+\begin{proof}
+    Let $z_0 \in \Omega$ be a limit point for the sequence $\{z_k\}_{k=1}^\infty$, such that $f(z_k)=0$. We first consider locally a disc $D\subseteq \Omega$ centered at $z_0$ and consider the power series expansion of $f$ in $D$:
+    \[
+    f(z)= \sum_{n=0}^\infty a_n(z-z_0)^n
+    \]
+    If $f$ is not identically zero in $D$, then $\exists$ a smallest integer $m$, e.t.: $a_m\neq 0$. Then we can write:
+    \[
+    f(z)= a_m(z-z_0)^m (1+g(z-z_0))
+    \]
+    where $g(z-z_0) \to 0$ as $z\to z_0$. Take $z=z_k \neq z_0$ for $k>m$. Then $a_m\neq 0$, $(z_k-z_0) ^m\neq 0$ and $1+g(z_k-z_0) \neq 0$, but $f(z_k)=0$, contradiction.
+
+    Consider $U:= \text{int }\{z\in \Omega \mid f(z)=0\} \neq \emptyset$, which is open. On the other hand, by the continuity and the power series expansion of $f$, $U$ is closed in $\Omega$. Hence, by the connectivity of $\Omega$, the only open and closed subsets are $\emptyset$ and $\Omega$. Therefore, $U=\Omega$.
+\end{proof}
+
+\begin{corollary}{of Identity Theorem}\\
+Let $f$ and $g$ be holomorphic in an open connected region $\Omega$ and let $f(z)=g(z)$ for all $z$ in some non-empty open subset of $\Omega$ (or more generally for $z$ in some distinct points with limit point in $\Omega$). Then $f= g$ throughout $\Omega$
+\end{corollary}
+
+\begin{definition}{Analytic Continuation}\\
+Let $f$ and $F$ be analytic in open $\Omega$ respectively $\Omega'$, with $\Omega \subseteq \Omega'$. We say $F$ is an \textit{analytic continuation of $f$ into $\Omega'$} if $f$ and $F$ agree on $\Omega$.
+\end{definition}
