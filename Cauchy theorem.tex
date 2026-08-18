@@ -284,3 +284,241 @@ Let $f$ and $g$ be holomorphic in an open connected region $\Omega$ and let $f(z
 \begin{definition}{Analytic Continuation}\\
 Let $f$ and $F$ be analytic in open $\Omega$ respectively $\Omega'$, with $\Omega \subseteq \Omega'$. We say $F$ is an \textit{analytic continuation of $f$ into $\Omega'$} if $f$ and $F$ agree on $\Omega$.
 \end{definition}
+
+\section{More Applications}
+
+\subsection{Morera's Theorem}
+
+\begin{theorem}{Morera's Theorem}\\
+Let $f$ be a continuous function in the open disc $D$ such that $\forall$ triangle $T$ contained in $D$,
+\[
+\int_T f(z)dz=0
+\]
+Then $f$ is holomorphic.
+\end{theorem}
+
+\begin{proof}
+    Let $z_0$ be the center of $D$ and $\forall z_1,z_2 \in D$, let $\gamma_{z_1,z_2}$ denote the line segment from $z_1$ to $z_2$. Define
+    \[
+    F(z):= \int_{\gamma_{z_0,z}} f(w)dw
+    \]
+    Fix $z\in D$. $\forall h\in \mathbb{C}$ with $z+h \in D$, we have
+    \begin{equation*}
+        F(z+h)- F(z)= \int_{\gamma_{z_0,z+h}} f(w)dw- \int_{\gamma_{z_0,z}} f(w)dw \tag{*}
+    \end{equation*}
+    Consider a triangle $T$ with vertices $z_0,z,z+h$. By assumption,
+    \begin{align*}
+        0&= \int_T f(w)dw = \int_{\gamma_{z_0,z}} f(w)dw+ \int_{\gamma_{z,z+h}} f(w)dw + \int_{\gamma_{z+h, z_0}} f(w)dw\\
+        &= \int_{\gamma_{z_0,z}} f(w)dw+ \int_{\gamma_{z,z+h}} f(w)dw - \int_{\gamma_{z_0, z+h}} f(w)dw \xlongequal{(*)} -(F(z+h)-F(z)) + \int_{\gamma_{z,z+h}} f(w)dw
+    \end{align*}
+    Hence, by def, $F'(z)= f(z)$, so we're done.
+\end{proof}
+
+\noindent\textbf{Remark:} Morera's Thm gives a converse of Cauchy's Thm.
+
+\subsection{Sequences of Holomorphic Functions}
+
+\noindent\textbf{Intuition:} In Real Analysis, the limit of a sequence of differentiable functions may \textit{not} differentiable. For example, by Weierstrass, every continuous function (may not differentiable) on $[0,1]$ can be approximated uniformly by polynomials.
+
+\begin{theorem}{Holomorphic Limit Theorem}\\
+If $\{f_n\}_{n=1}^\infty$ is a sequence of holomorphic functions that converges uniformly to a function $f$ in every compact subset of $\Omega$, then $f$ is holomorphic in $\Omega$.
+\end{theorem}
+
+\begin{proof}
+    Let $D$ be any disc whose closure is contained in $\Omega$ and let $T$ be any triangle in $D$. By Gourset's, $\forall n$, we have
+    \[
+    \int_T f_n(z)dz=0
+    \]
+    Since $f_n\to f$ uniformly in $\overline{D}$, then $f$ is continuous and
+    \[
+    \int_Tf_n(z)dz \to \int_T f(z)dz
+    \]
+    Hence, $\int_T f(z)dz=0$. Therefore, by Morera's, we're done.
+\end{proof}
+
+\begin{theorem}{Uniform Convergence of Derivatives Theorem}\\
+Under the hypothesis of the Holomorphic Limit Thm, the sequence of derivatives $\{f'_n \}_{n=1}^\infty$ converges uniformly to $f'$ on every compact subset of $\Omega$.
+\end{theorem}
+
+\begin{proof}
+    WLOG, assume $\{f_n\}_{n=1}^\infty$ uniformly converges on all of $\Omega$. Define $\Omega _\delta:= \{z\in \Omega \mid \overline{D_\delta (z)} \subseteq \Omega \}$.
+
+    \noindent\textbf{Claim:} For any holomorphic function $F$ in $\Omega$, we have:
+    \[
+    \sup_{z\in \Omega_\delta} |F'(z)| \leq \frac{1}{\delta} \sup_{\zeta \in \Omega} |F(\zeta) |
+    \]
+    \begin{proof}
+        \textit{of claim:} By CIF, $F'(z)= \frac{1}{2\pi i} \int_{C_\delta (z)} \frac{F(\zeta)}{(\zeta- z)^2} d\zeta$, where $C_\delta (z)$ denotes the circle centered at $z$ and of radius $\delta$. Then by the ML Inequality, we get:
+        \begin{align*}
+            |F'(z)| &\leq \frac{1}{2\pi} \int_{C_\delta(z)} \frac{|F( \zeta )|}{|\zeta-z|^2} d\zeta \overset{(\text{ML})}{\leq} \frac{1}{2\pi} \sup_{\zeta \in \Omega} |F(\zeta)| \frac{1}{\delta^2} 2\pi \delta= \frac{1}{\delta} \sup_{\zeta \in \Omega} |F(\zeta)|
+        \end{align*}
+    \end{proof}
+    Let $F=f_n-f$. Then by claim, we have:
+    \[
+    \sup_{z \in \Omega_\delta} |f'_n(z) -f'(z)| \leq \sup_{\zeta\in \Omega} |f_n(z)- f(\zeta)| \to 0
+    \]
+\end{proof}
+
+\noindent\textbf{Remark:} We may conclude that the Uniform Convergence of Derivatives Thm can be promoted for $f^{(k)}$.
+
+
+\subsection{Holomorphic Functions defined in terms of Integrals}
+
+\noindent\textbf{Motivation:} Consider a function
+\[
+f(z):= \int_a^b F(z,s) ds
+\]
+where $F$ is holomorphic in $\Omega \subseteq \mathbb{C}$ for $z$ and continuous for $s$. This integral is easy to show that it is well-defined, but whether $f$ is holomorphic is \textit{not} trivial.
+
+\begin{theorem}{Holomorphic Integral Theorem}\\
+Let $F(z,s)$ be defined for $(z,s) \in \Omega \times [0,1]$ where $\Omega$ is an open subset of $\mathbb{C}$. Suppose $F$ satisfies the following properties:
+\begin{enumerate}
+    \item $F(z,s)$ is holomorphic in $z$ for each $s$.
+    \item $F$ is continuous on $\Omega \times [0,1]$.
+\end{enumerate}
+Then the function $f$, defined on $\Omega$ by $z \mapsto \int_0^1 F(z,s)ds$, is holomorphic.
+\end{theorem}
+
+\begin{proof}
+    $\forall n\geq 1$, consider $f_n(z):= (1/n) \sum_{k=1}^n F(z,k/n)$. Then by property 1, $f_n$ is holomorphic in all of $\Omega$. Let $D$ be any open disc whose closure is contained in $\Omega$. Then $\overline{D} \times [0,1]$ is compact in $\mathbb{C} \times \mathbb{R}$. Hence, by property 2, $F$ is uniformly continuous on $\overline{D} \times [0,1]$, so $\forall \epsilon>0, \exists \delta>0,$ s.t.: whenever $|s_1-s_2|<\delta$,
+    \[
+    \sup_{z\in D} |F(z,s_1)- F(z,s_2)|<\epsilon
+    \]
+    Then $\forall n \geq 1/n, \forall z\in D$, we have:
+    \[
+    |f_n(z)-f(z)|= |\sum_{n=1}^k \int_{\frac{k-1}{n}}^{\frac{k}{n}} (F(z,\frac{k}{n}) -F(z,s)) ds| \leq \sum_{k=1}^n \int_{\frac{k-1}{n}}^{\frac{k}{n}} |F(z,\frac{k}{n}) -F(z,s)| ds< \sum_{k=1}^n \frac{\epsilon}{n}= \epsilon
+    \]
+    Hence, $f_n\to f$ uniformly. Therefore, by the Holomorphic Limit Thm, we're done.
+\end{proof}
+
+\subsection{Schawarz Reflection Principle}
+
+\noindent\textbf{Motivation:} In Real Analysis, the extension of functions is a common and easy method. But in Complex Analysis, the Identity Thm implies that the analytic continuation is difficult to complete.
+
+\noindent\textbf{Convention:} Let $\Omega$ be an open subset of $\mathbb{C}$.
+\begin{itemize}
+    \item $\Omega$ is \textit{symmetric} if $z\in \Omega \Leftrightarrow \overline{z} \in \Omega$.
+    \item $\Omega^+:= \{z\in \Omega \mid \text{im }z>0\}, \Omega^-:= \{ z\in \Omega \mid \text{im }z<0\}$.
+    \item $I_{\Omega} := \Omega \cap \mathbb{R}$, which is the common boundary of both $\Omega^+$ and $\Omega^-$.
+\end{itemize}
+
+\begin{lemma}{Symmetry Principle}\\
+Let $f^+$ and $f^-$ be holomorphic functions in $\Omega^+$ respectively $\Omega^-$, that extend continuously to $I_\Omega$ and that
+\[
+f^+(x)= f^-(x) ,\forall x\in I_\Omega
+\]
+Then $f$ defined on $\Omega$ by
+\[
+f(z):= \begin{cases}
+    f^+(z) &\text{,if }z\in \Omega^+\\
+    f^+(z)=f^-(z) &\text{,if }z\in I_\Omega\\
+    f^-(z) &\text{,if }z\in \Omega^-\\
+\end{cases}
+\]
+is holomorphic on all of $\Omega$.
+\end{lemma}
+
+\begin{proof}
+    The continuity of $f$ is implied directly by assumption. Then it suffices to show that $f$ is holomorohic on $I_\Omega$: Let $D$ be any disc centered at a point in $I_\Omega$ and contained in $\Omega$. For any triangle $T$ in $D$, there are three cases:
+    \begin{itemize}
+        \item $T\cap I_\Omega =\emptyset$. By Gourset's, we have
+        \[
+        \int_T f(z)dz=0
+        \]
+        \item Either vertex or side of $T$ is on $I_\Omega$. Let $T_\epsilon$ denote the triangle translated $\epsilon$ into $\Omega^+$. Then by the continuity of $f$ and the conclusion in the first case, we have: as $\epsilon \to 0$,
+        \[
+        0 \xlongequal{\text{case 1}} \int_{T_\epsilon} f(z)dz \xrightarrow{\text{cont of }f} \int_T f(z)dz
+        \]
+        Hence, $\int_T f(z)dz=0$.
+
+        \item $I_\Omega$ intersects $T$ precisely at the two points. Note that we can easily divide $T$ into some smaller triangles which satisfies the second case and applying the conclusion of the second case, we have:
+        \[
+        \int_T f(z)dz=0
+        \]
+    \end{itemize}
+    Therefore, by Morera's, we're done.
+\end{proof}
+
+\begin{theorem}{Schwarz Reflection Principle}\\
+Let $f$ be a holomorphic function in $\Omega^+$ such that $f$ extends continuously to $I_\Omega$ and that $f$ is real-valued on $I_\Omega$. Then there is a function $F$ holomorphic in all of $\Omega$, s.t.: $F= f$ on $\Omega^+$.
+\end{theorem}
+
+\begin{proof}
+    Define $F(z):= \overline{f(z)} ,\forall z\in \Omega^-$, which is obviously holomorphic in $\Omega^-$. Since $f$ is real-valued on $I_\Omega$, then $\overline{f(x)}=f(x), \forall x\in I$. Hence, $F$ extends continuously up to $I_\Omega$. Therefore, by the Symmetry Principle, we're done.
+\end{proof}
+
+\subsection{Runge's Approximation Theorem}
+
+\noindent\textbf{Motivation:} In Real Analysis, every continuous function on a compact interval, by Weierstrass's Thm, can be approximated uniformly by polynomials. So we ask: What conditions on a compact set $K\subseteq \mathbb{C}$ guarentee that any function holomorphic in an open neighborhood of this set can be approximated by polynomials on $K$?
+
+\begin{theorem}{Runge's Approximation Theorem}\\
+Any function holomorphic in an open neighborhood of a compact set $K$ can be approximated uniformly on $K$ by rational functions whose singularities are in $K^C$. Furthermore, if $K^C$ is connected, then any function holomorphic in an open neighborhood of $K$ can be approximated uniformly on $K$ by polynomials.
+\end{theorem}
+
+\begin{proof}
+    \begin{lemma}{1: Cauchy Integral Representation Lemma on Compact Sets}\\
+    Suppose $f$ is holomorphic in an open set $\Omega$ and that $K\subseteq \Omega$ is compact. Then there exist finitely many segment $\gamma_1 ,\cdots, \gamma_N$ in $\Omega \setminus K$, s.t.: $\forall z\in K,$
+    \[
+    f(z)=\sum_{n=1}^N \frac{1}{2\pi i} \int_{\gamma_n} \frac{f(\zeta)}{\zeta-z} d\zeta
+    \]
+    \end{lemma}
+
+    \begin{proof}
+        \textit{of lemma 1:} Take a grid of length $d:= \frac{1}{2\sqrt{2}} d(K,\Omega^C)$ and let $\mathcal{Q}:= \{ Q_1 ,\cdots, Q_M\}$ denote the finite collection of squares in the grid that intersect $K$. Define $\gamma_1 ,\cdots, \gamma_N$ by the sides of squares in $\mathcal{Q}$ that do not belong to two adjacent squares in $\mathcal{Q}$. Then $\gamma_n \cap K= \emptyset ,\forall n$. By the def of $d$, we have: $\gamma_n \subseteq \Omega, \forall n$. $\forall z\in K$ that is not on the boundary of a square in $\mathcal{Q}$, $\exists j$, s.t.: $z\in Q_j$. Hence, by Cauchy's,
+        \[
+        \frac{1}{2\pi i} \int_{\partial Q_m} \frac{f(\zeta)}{\zeta -z} d\zeta= \begin{cases}
+            f(z) &\text{,if }m=j\\
+            0&\text{,if }m\neq j
+        \end{cases}
+        \]
+        Therefore, 
+        \[
+        f(z)= \sum_{m=1}^M \frac{1}{2\pi i} \int_{\partial Q_m} \frac{f(\zeta)}{\zeta -z} d\zeta
+        \]
+        Since the integral over two adjacent squares cancels, then
+        \[
+        f(z)=\sum_{n=1}^N \frac{1}{2\pi i} \int_{\gamma_n} \frac{f(\zeta)}{\zeta -z} d\zeta
+        \]
+        Finally, since $\gamma_n\subseteq K^C, \forall n$, then by the continuity of $f$, this relation can be promoted for all $z\in K$.
+    \end{proof}
+
+    \begin{lemma}{2: Rational Approximation of Contour Integrals}\\
+    $\forall$ line segment $\gamma \subseteq \Omega \setminus K$, $\exists$ a sequence of rational functions with singularities on $\gamma$ that approximate the integral $\int_\gamma f(\zeta)/ (\zeta-z) d\zeta$ uniformly on $K$.
+    \end{lemma}
+
+    \begin{proof}
+        \textit{of lemma 2:} Let $\gamma(t)$ be a parameterization for $\gamma$. Then
+        \[
+        \int_\gamma \frac{f(\zeta)}{\zeta -z} d\zeta= \int_0^1 \frac{f(\gamma(t))}{ \gamma (t)-z} \gamma'(t)dt
+        \]
+        Since $\gamma \cap K=\emptyset$, then the integrand $F(z,t):= \frac{f(\gamma (t))}{ \gamma(t)-z} \gamma' (t)$ is continuous on $K\times [0,1]$. Since $K$ is compact, then applying the same argument in the proof of the Holomorphic Integral Thm, we see that the Riemann sums of the integral $\int_0^1 F(z,t)dt$ approximate it uniformly on $K$. Since each of these Riemann sums is a rational function with singularities on $\gamma$, then we're done.
+    \end{proof}
+    By lemma 1, $f$ can be represented by finitely many contour integrals on $\gamma_n$ and then each of them, by lemma 2, can be approximated uniformly by rational functions. Hence, the first part of the Runge's Approximation Thm holds. As for the further part, we need one more lemma:
+
+    \begin{lemma}{3: Pole Pushing Lemma}\\
+    If $K^C$ is connected and $z_0 \notin K$, then the function $1/(z-z_0)$ can be approximated uniform on $K$ by polynomials.
+    \end{lemma}
+
+    \begin{proof}
+        \textit{of lemma 3:} Choose a point $z_1$ that is outside a large open disc $D$ centered at the origin and containing $K$. Then
+        \[
+        \frac{1}{z-z_1}= -\frac{1}{z_1} \cdot \frac{1}{1-\frac{z}{z_1}}= \sum_{n=1}^\infty -\frac{z^n}{z^{n+1}_1}
+        \]
+        where the series converges uniformly $\forall z\in K\subseteq D$. Hence, the partial sums of this series are polynomials that approximate uniformly $1/(z-z_1)$ on $K$. Similarly, $\forall k\in \mathbb{N}_+$, $1/(z-z_k)$ can be approximated uniformly on $K$ by polynomials. Now it suffices to prove that $1/ (z-z_0)$ can be approximated uniformly on $K$ by polynomials in $1/(z-z_1)$:
+
+        Since $K^C$ is connected and hence path-connected, then $\exists$ a path $\gamma$ fro $z_0$ to $z_1$, contained in $K^C$. Define
+        \[
+        \rho:= \frac{1}{2} d(K,\gamma)
+        \]
+        which is positive since $K$ and $\gamma$ are compact. Then choose finitely many points $z_0=w_0, w_1 ,\cdots, w_l=z_1$, s.t.: $0\leq j<l$, we have $w_j\in \gamma$ and 
+        \[
+        |w_j- w_{j+1}|<\rho
+        \]
+        Fix $w\in \gamma$. $\forall w'\in \gamma$ with $|w-w'|<\rho$, note that
+        \[
+        \frac{1}{z-w}= \frac{1}{z-w'} \cdot \frac{1}{1-\frac{w-w'}{z-w'}}= \sum_{n=0} ^\infty \frac{(w-w')^n}{(z-w')^{n+1}}
+        \]
+        Hence, $\frac{1}{z-w}$ can be approximated uniformly by $\frac{1}{z-w'}$, since $|\frac{w-w'}{z-w'}|< \frac{\rho}{2\rho} =\frac{1}{2}<1$. Therefore, we can push $\frac{1}{z-z_0}=\frac{1}{z-w_0}$ to gradually $\frac{1}{z-w_1} ,\frac{1}{z-w_2} ,\cdots,$ and finally to $\frac{1}{z-w_l}=\frac{1}{z-z_1}$.
+    \end{proof}
+    Then by lemma 3, we can push the singularities of rational functions all the way to infinity, thereby transforming the rational functions into polynomials.
+\end{proof}
