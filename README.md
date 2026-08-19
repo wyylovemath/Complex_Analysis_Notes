@@ -1,104 +1,83 @@
-# Complex Analysis Lecture Notes
+# Complex Analysis Notes
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Status: In Progress](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
-[![Topic: Mathematics](https://img.shields.io/badge/Topic-Complex%20Analysis-orange.svg)]()
-
-> A structured and comprehensive set of lecture notes on **Complex Analysis**, covering foundational theorems, rigorous proofs, and key applications.
+A rigorous, self-contained set of lecture notes on **Complex Analysis**, covering classical theory from Cauchy's Integral Theorem to Meromorphic Functions and the Argument Principle.
 
 ---
 
-## ✍️ Author & Overview
+## 📖 Table of Contents
 
-* **Author:** Wang Yuyao
-* **Subject:** Complex Analysis / Holomorphic Function Theory
-* **Document Source:** [`Complex_Analysis.pdf`](./Complex_Analysis.pdf)
-
-These notes provide a mathematically rigorous introduction to classical complex analysis, starting from contour integrals and foundational principles up to advanced approximation theorems.
-
----
-
-## 📚 Table of Contents
-
-- [Chapter 1: Cauchy's Theorem](#chapter-1-cauchys-theorem)
-  - [1.1 Goursat's Theorem](#11-goursats-theorem)
-  - [1.2 Cauchy's Theorem in Discs](#12-cauchys-theorem-in-discs)
-  - [1.3 Cauchy's Integral Formula (CIF)](#13-cauchys-integral-formula-cif)
-  - [1.4 Identity Theorem](#14-identity-theorem)
-  - [1.5 Applications](#15-applications)
-    - [1.5.1 Morera's Theorem](#151-moreras-theorem)
-    - [1.5.2 Sequences of Holomorphic Functions](#152-sequences-of-holomorphic-functions)
-    - [1.5.3 Holomorphic Functions Defined via Integrals](#153-holomorphic-functions-defined-via-integrals)
-    - [1.5.4 Schwarz Reflection Principle](#154-schwarz-reflection-principle)
-    - [1.5.5 Runge's Approximation Theorem](#155-runges-approximation-theorem)
-- [✨ Key Highlights & Theorems](#-key-highlights--theorems)
-- [🛠 Requirements & Compilation](#-requirements--compilation)
-- [📄 License](#-license)
+- [About the Notes](#-about-the-notes)
+- [Summary of Topics](#-summary-of-topics)
+  - [Chapter 1: Cauchy's Theorem](#chapter-1-cauchys-theorem)
+  - [Chapter 2: Meromorphic Functions](#chapter-2-meromorphic-functions)
+- [Key Theorems Covered](#-key-theorems-covered)
+- [Author & Acknowledgments](#-author--acknowledgments)
 
 ---
 
-## 📖 Detailed Content Outline
+## 💡 About the Notes
+
+This repository contains comprehensive course/study notes on Complex Functions written by **Wang Yuyao**. The material is structured with formal mathematical definitions, rigorous proofs, geometric intuition, and key corollaries. 
+
+The original PDF version is compiled with LaTeX, complete with illustrated diagrams (e.g., toy contours, keyhole paths) to assist in visualization.
+
+---
+
+## 📚 Summary of Topics
 
 ### Chapter 1: Cauchy's Theorem
-
-#### 1.1 Goursat's Theorem
-* **Motivation:** Simplifying conditions on closed curves $\gamma$ via triangle partitioning.
-* **Theorem:** Proof using triangle subdivision $T^{(0)} \supseteq T^{(1)} \supseteq \dots \supseteq T^{(n)}$, diameter shrink rates, and first-order expansions at the limit point $z_0 \in \Omega$.
-* **Corollary:** Extension to rectangles $R \subset \Omega$.
-
-#### 1.2 Cauchy's Theorem in Discs
-* **Local Existence-of-Primitives Lemma:** Constructing $F(z) = \int_{\gamma_{0,z}} f(w)\,dw$ on open discs.
-* **Toy Contours & Keyhole Contours:** Introduction of narrow-corridor contours $\Gamma_{\delta,\epsilon}$ for pole avoidance.
-* **Cauchy's Theorem:** Vanishing contour integrals for closed curves in open discs.
-
-#### 1.3 Cauchy's Integral Formula (CIF)
-* **Core Formula:**
-  $$f(z) = \frac{1}{2\pi i} \int_{C} \frac{f(\zeta)}{\zeta - z} \, d\zeta$$
-* **Corollaries & Key Results:**
-  1. **Higher Derivatives:** $f^{(n)}(z) = \frac{n!}{2\pi i} \int_{C} \frac{f(\zeta)}{(\zeta - z)^{n+1}} \, d\zeta$
-  2. **Cauchy Inequalities:** Bounds on $|f^{(n)}(z_0)|$ via $R^n$.
-  3. **Power Series Expansion:** Local analyticity of holomorphic functions.
-  4. **Liouville's Theorem:** Bounded entire functions are constant.
-  5. **Fundamental Theorem of Algebra:** Existence and factorization of roots in $\mathbb{C}$.
-
-#### 1.4 Identity Theorem & Analytic Continuation
-* Zeros of non-zero holomorphic functions are isolated.
-* Uniqueness of analytic extensions over connected domains $\Omega$.
-
-#### 1.5 Applications
-* **1.5.1 Morera's Theorem:** Converse of Cauchy's Theorem via triangular path integrals.
-* **1.5.2 Sequences of Holomorphic Functions:**
-  * **Holomorphic Limit Theorem:** Uniform limits of holomorphic functions on compact subsets are holomorphic.
-  * **Uniform Convergence of Derivatives:** $f_n' \to f'$ uniformly on compact sets.
-* **1.5.3 Integrals with Parameters:** Holomorphicity of $f(z) = \int_{a}^{b} F(z,s)\,ds$.
-* **1.5.4 Schwarz Reflection Principle:** Extending holomorphic functions across real boundary segments via symmetry ($f(\bar{z}) = \overline{f(z)}$).
-* **1.5.5 Runge's Approximation Theorem:**
-  * Integral representations on compact sets.
-  * Rational function approximation and the **Pole Pushing Lemma**.
-  * Uniform polynomial approximation when $K^c$ is connected.
+- **Goursat's Theorem**: Proof via triangular subdivision and nested compact sets without assuming $f'$ is continuous.
+- **Cauchy's Theorem in Discs & Toy Contours**: Primitive existence lemmas, keyhole contours, and general closed curve path integration.
+- **Cauchy's Integral Formula (CIF)**:
+  - Higher-order derivative formulas
+  - Cauchy Inequalities
+  - Power Series Expansion Theorem
+  - Liouville's Theorem
+  - Fundamental Theorem of Algebra
+- **Identity Theorem & Analytic Continuation**: Properties of zeros, limit points, and extension across connected domains.
+- **Applications & Extensions**:
+  - **Morera's Theorem** (Converse of Cauchy's Theorem)
+  - **Sequences of Holomorphic Functions** (Holomorphic Limit Theorem & Uniform Convergence of Derivatives)
+  - **Holomorphic Functions defined by Integrals**
+  - **Schwarz Reflection Principle** & Symmetry Principle
+  - **Runge's Approximation Theorem** (Cauchy representation on compact sets, rational approximation, and pole pushing)
 
 ---
 
-## ✨ Key Highlights & Theorems Summary
+### Chapter 2: Meromorphic Functions
+- **Zeros and Poles**: Local factorization theorem, orders of zeros/poles, principal part expansions, and residue calculation formulas.
+- **Residue Formula**: Cauchy's Residue Theorem and its extensions over general toy contours.
+- **Singularities**:
+  - **Removable Singularities**: Riemann's Removable Singularity Theorem.
+  - **Essential Singularities**: Casorati-Weierstrass Theorem (density of image near essential singularities).
+- **Meromorphic Functions**: Properties in $\mathbb{C}$ and characterization in the extended complex plane $\hat{\mathbb{C}}$ (rational functions).
+- **Argument Principle**:
+  - Count of zeros and poles via logarithmic derivatives.
+  - **Rouché's Theorem**
+  - **Open Mapping Theorem**
+  - **Maximum Modulus Principle** and boundary maximum corollaries.
 
-| Theorem / Principle | Main Statement / Result |
+---
+
+## 🔑 Key Theorems Covered
+
+| Theorem / Principle | Description / Core Idea |
 | :--- | :--- |
-| **Goursat's Theorem** | $\int_T f(z)\,dz = 0$ for any triangle $T \subset \Omega$ and $f \in \text{Hol}(\Omega)$. |
-| **Cauchy's Integral Formula** | Expresses internal values $f(z)$ purely in terms of boundary values on $C$. |
+| **Goursat's Theorem** | $\int_{T} f(z) dz = 0$ for triangles without assuming $C^1$ continuity of $f'$. |
+| **Cauchy's Integral Formula** | $f(z) = \frac{1}{2\pi i} \int_{C} \frac{f(\zeta)}{\zeta - z} d\zeta$ |
 | **Liouville's Theorem** | Every bounded entire function is constant. |
-| **Morera's Theorem** | Continuous $f$ with zero integrals over all triangles is holomorphic. |
-| **Schwarz Reflection** | Holomorphic functions real on $I_\Omega$ extend analytically across the real axis. |
-| **Runge's Theorem** | Holomorphic functions can be uniformly approximated by polynomials if $K^c$ is connected. |
+| **Morera's Theorem** | Continuous functions with zero triangular integrals are holomorphic. |
+| **Schwarz Reflection Principle** | Extending holomorphic functions across real boundaries via complex conjugation. |
+| **Runge's Theorem** | Uniform approximation of holomorphic functions by polynomials or rational functions. |
+| **Casorati-Weierstrass** | Image of a deleted neighborhood of an essential singularity is dense in $\mathbb{C}$. |
+| **Rouché's Theorem** | Comparison of zero counts for perturbed functions $\|f(z)\| > \|g(z)\|$. |
 
 ---
 
-## 🛠 Building / Compiling the Notes
+## 🛠 Usage & PDF Compilation
 
-If you wish to recompile the LaTeX source file to generate the PDF:
+To view or compile the PDF directly from the source `.tex` files (if included):
 
 ```bash
-# Compile using pdflatex or xelatex
-xelatex Complex_Analysis.tex
-
-# Re-run for table of contents and cross-references
+# Using pdflatex or xelatex
 xelatex Complex_Analysis.tex
