@@ -522,3 +522,68 @@ Any function holomorphic in an open neighborhood of a compact set $K$ can be app
     \end{proof}
     Then by lemma 3, we can push the singularities of rational functions all the way to infinity, thereby transforming the rational functions into polynomials.
 \end{proof}
+
+\section{Generalization for Cauchy's Theorem}
+
+\begin{proposition}{Homotopy Invariance of Holomorphic Functions Proposition}\\
+Let $\Omega$ be an open set. If $f$ is holomorphic in $\Omega$, and if $\gamma _0$ and $\gamma_1$ are two homotopic curves in $\Omega$, then
+\[
+\int_{\gamma_0} f(z)dz= \int_{\gamma_1} f(z)dz
+\]
+\end{proposition}
+
+\begin{proof}
+    Let $\gamma_0(t)$ and $\gamma_1(t)$ be the parameterizations of $\gamma_0$ respectively $\gamma_1$ defined on $[a,b]$ with $\gamma_0(a)=\gamma_1(a) =\alpha$ and $\gamma_0(b)=\gamma_1(b) =\beta$, and let $\gamma: [0,1] \times [a,b] \to \mathbb{C}$ be the homotopy from $\gamma_0$ to $\gamma_1$. Since $[0,1] \times [a,b]$ is compact and $\gamma$ is continuous, then $K:= \text{im }\gamma$ is compact and $\gamma$ is continuous, so $\exists \epsilon>0$, s.t.: every disc of radius $3\epsilon$ centered at a point in $K$ is contained in $\Omega$, and $\exists \delta>0$, s.t.: whenever $|s_1- s_2|<\delta$,
+    \[
+    \sup_{t\in [a,b]} |\gamma(s_1,t) -\gamma(s_2,t)|< \epsilon
+    \]
+    Fix $s_1,s_2 \in [0,1]$ with $|s_1-s_2|<\delta$ and then choose discs $\{ D_0,\cdots, D_n\}$ of radius $2\epsilon$ and points $\{ \alpha=z_0, \cdots, z_{n+1}= \beta\}$ on $\gamma_{s_1}:= \gamma(\{ s_1 \}\times [a,b])$ and $\{ \alpha= w_0 ,\cdots, w_{n+1} =\beta \}$ on $\gamma_{s_2} := \gamma(\{s_2\} \times [a,b])$ such that $\gamma_{s_1}$ and $\gamma_{s_2}$ are covered by $\{ D_0,\cdots, D_n\}$ and that $\forall i=0,\cdots, n$, the points $z_i,z_{i+1} ,w_i,w_{i+1}$ are in $D_i$.
+
+    By the Local Existence-of-Primitives Lemma, on each disc $D_i$, $f$ admits a primitive, denoted as $F_i$. Then on $D_i \cap D_{i+1}$, since $F_i$ and $F_{i+1}$ are two primitives of the same functions, then $F_{i+1}-F_i$ is a constant function. Hence,
+    \begin{equation*}
+        F_{i+1} (z_{i+1})  -F_i(z_i)= F_{i+1}(w_{i+1})- F_i(w_i) \Leftrightarrow F_{i+1} (z_{i+1})- F_{i+1}(w_{i+1}) = F_i(z_i)- F_i(w_i) \tag{*}
+    \end{equation*}
+    Therefore,
+    \begin{align*}
+        \int_{\gamma_{s_1}} f-\int_{\gamma_{s_2}}f &= \sum_{i=0}^n (F_i(z_{i+1})- F_i(z_i)) - \sum_{i=0}^n (F_i(w_{i+1})- F_i(w_i))\\
+        &=\sum_{i=0}^n ((F_i(z_{i+1})- F_i(z_i))-(F_i(w_{i+1})- F_i(w_i)))\\
+        &\xlongequal{(*)} F_n(z_{n+1})-F_n(w_{n+1})- (F_0(z_0)- F_0(w_0))\\
+        &= F_n(\alpha)-F_n(\alpha)- (F_0(\beta)- F_0(\beta))=0
+    \end{align*}
+    Then by subdividing $[0,1]$ into subintervals $[s_i,s_{i+1}]$ of length less than $\delta$, we can go from $\gamma_0$ to $\gamma_1$ by finitely many times applying $\int_{\gamma_{s_i}} f=\int_{\gamma_{s_{i+1}}}f$.
+\end{proof}
+
+\begin{lemma}{Existence of Primitives in Simply Connected Domain Lemma}\\
+Any holomorphic function in a simply connected domain has a primitive.
+\end{lemma}
+
+\begin{proof}
+    Let $f$ be holomorphic in a simply connected domain $\Omega$. Fix $z_0 \in \Omega$. $\forall z\in \Omega$, let $\gamma$ be any curve in $\Omega$ from $z_0$ to $z$. By the Homotopy Invariance of Holomorphic Functions Prop, we can well-definedly define
+    \[
+    F(z):= \int_\gamma f(w)dw
+    \]
+    i.e.: the prop guarantees that this def is independent of the curve $\gamma$. If we denote by $\gamma_{z,z'}$ the line segment from $z$ to $z'$, then we can write
+    \[
+    F(z+h)- F(z)=\int_{\gamma_{z,z+h}} f(w)dw
+    \]
+    Applying the same argument in the proof of the Local Existence-of-Primitives Lemma, then we're done.
+\end{proof}
+
+\begin{theorem}{Cauchy's Theorem in Simply Connected Domains}\\
+If $f$ is holomorphic in a simply connected domain $\Omega$, then $\forall$ closed curve $\gamma$ in $\Omega$,
+\[
+\int_\gamma f(z)dz=0
+\]
+\end{theorem}
+
+\begin{proof}
+    It's immediately from the Fundamental Thm of Calculus for Contour Integrals and the Existence of Primitives in Simply Connected Domains Lemma.
+\end{proof}
+
+\begin{corollary}{of Cauchy's Theorem in Simply Connected Domains}\\
+The punctured plane $\mathbb{C} \setminus \{0\}$ is not simply connected.
+\end{corollary}
+
+\begin{proof}
+    It's immediately from the Cauchy's Theorem in Simply Connected Domains and the fact that the integral of $1/z$ over the unit circle is $2\pi i$ but not $0$.
+\end{proof}
